@@ -22,8 +22,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/charmanderpokedex" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvPokemonIdNumber"
@@ -62,22 +61,22 @@
                 android:id="@+id/tvType1"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:background="#FD7D24"
+                android:background="#A4ACAF"
                 android:textAlignment="center"
-                android:textColor="#FFFFFF"
+                android:textColor="#212121"
                 android:textSize="12sp"
-                tools:text="Fire" />
+                tools:text="Type" />
 
             <TextView
                 android:id="@+id/tvType2"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:background="#FD7D24"
+                android:background="#A4ACAF"
                 android:textAlignment="center"
-                android:textColor="#FFFFFF"
+                android:textColor="#212121"
                 android:textSize="12sp"
-                tools:text="Fire" />
+                tools:text="Type" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
