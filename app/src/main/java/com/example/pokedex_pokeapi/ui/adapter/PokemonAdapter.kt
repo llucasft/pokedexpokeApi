@@ -15,10 +15,20 @@ class PokemonAdapter(
     private val items: List<Pokemon?>
 ) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
+    interface OnItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    private var itemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        itemClickListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.pokemon_item, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, this)
     }
 
     override fun getItemCount() = items.size
@@ -29,7 +39,15 @@ class PokemonAdapter(
         holder.bindView(item)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, private val adapter: PokemonAdapter) :
+        RecyclerView.ViewHolder(itemView) {
+
+        init {
+            itemView.setOnClickListener {
+                adapter.itemClickListener?.onItemClick(adapterPosition)
+            }
+        }
+
         fun bindView(item: Pokemon?) {
             val image = itemView.findViewById<ImageView>(R.id.pokemonImage)
             val number = itemView.findViewById<TextView>(R.id.tvPokemonIdNumber)

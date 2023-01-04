@@ -1,6 +1,7 @@
 package com.example.pokedex_pokeapi.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -33,7 +34,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadRecyclerView(pokemons: List<Pokemon?>) {
+        val pokemonAdapter = PokemonAdapter(pokemons)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = PokemonAdapter(pokemons)
+        recyclerView.adapter = pokemonAdapter
+
+        pokemonAdapter.setOnItemClickListener(object : PokemonAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                Toast.makeText(
+                    this@MainActivity,
+                    "Pokemon ${pokemons[position]?.formattedName} clicado!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        })
     }
 }
